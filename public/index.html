@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Jukebox Hero</title>
+        <meta name="description" content="The classic iPod quiz reimagined with Spotify">
+        <meta property="og:title" content="Jukebox Hero">
+        <meta property="og:description" content="The classic iPod quiz reimagined with Spotify">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://www.jukeboxhero.app">
+        <meta name="apple-mobile-web-app-title" content="Jukebox Hero">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+        <link rel="icon" type="image/png" href="/images/favicon.png">
+        <link rel="stylesheet" href="./index.css" />
+    </head>
+
+    <body>
+        <h1 id="title" class="login loggedin playlists beforestart">Jukebox Hero</h1>
+
+        <p class="login loggedin" hidden>The classic iPod quiz reimagined with Spotify</p>
+        <a href="/login" id="loginbutton" class="login btn" hidden>Log in with Spotify</a>
+
+        <button id="playButton" class="loggedin" onclick="showPlaylists()" hidden>Play</button>
+        <button id="changeuser" class="loggedin" onclick="changeUser()" hidden>Change User</button>
+
+        <button id="backbutton" class="playlists beforestart game backbutton" hidden>Back</button>
+
+        <p class="playlists" hidden>Select one or more playlists</p>
+        <div id="playlists" class="playlists" hidden></div>
+        <button id="submitselection" class="playlists" onclick="submitSelection()" hidden disabled>Done</button>
+        <button id="selectall" class="playlists" onclick="selectAll()" hidden>Select All</button>
+        
+        <p id="progressbar" class="beforestart" hidden></p>
+        <button id="startGame" class="beforestart" onclick="startGame()" hidden>Start Game</button>
+        <button id="customizebutton" class="beforestart" onclick="showCustomization()" hidden>Customize Game</button>
+
+        <div id="customize" class="customization" hidden>
+
+            <div id="numsongs" class="customization customoption" hidden>
+                <span class="customization numsongs" hidden>Number of Songs</span>
+                <div id="selectsongs" class="customization numsongs" hidden>
+                    <span id="prevnumsongs" class="customization numsongs prevoption" onclick="incrementNumSongs(-1)" hidden> < </span>
+                    <span id="currentnumsongs" class="customization numsongs currentoption" hidden></span>
+                    <span id="tempnumsongs" class="customization numsongs" hidden></span>
+                    <span id="nextnumsongs" class="customization numsongs nextoption" onclick="incrementNumSongs(1)" hidden> > </span>
+                </div>
+            </div>
+
+            <div id="songlength" class="customization customoption" hidden>
+                <span class="customization songlength" hidden>Song Length (secs)</label>
+                <div id="selectlength" class="customization songlength" hidden>
+                    <span id="prevsonglength" class="customization songlength prevoption" onclick="incrementSongLength(-1)" hidden> < </span>
+                    <span id="currentsonglength" class="customization songlength currentoption" hidden></span>
+                    <span id="tempsonglength" class="customization songlength" hidden></span>
+                    <span id="nextsonglength" class="customization songlength nextoption" onclick="incrementSongLength(1)" hidden> > </span>
+                </div>
+            </div>
+
+            <span id="confirmsettings" class="customization settingsbutton" onclick="confirmSettings()" hidden>Confirm</span>
+            <span id="resetdefaults" class="customization settingsbutton" onclick="resetDefaultSettings()" hidden>Reset Defaults</span>
+            <span id="cancelsettings" class="customization settingsbutton" onclick="cancelSettings()" hidden>Cancel</span>
+        </div>
+
+        <p id="score" class="game" data-score="0" hidden></p>
+        <p id="finalscore" class="game" data-score="0" data-correct="0" data-total="0" hidden>0</p>
+        <div id="songs" class="game" hidden></div>
+        <div id="nextsongs" class="game" hidden></div>
+        <audio id="gameAudio" class="game" hidden></audio>
+
+        <span id="endscore" class="endscreen" hidden></span>
+        <span id="scoredescriptor" class="endscreen" hidden></span>
+        <div id="bothhalves" class="endscreen" hidden>
+            <div id="lefthalf" class="endscreen" hidden>
+                <span id="numbercorrect" class="endscreen" hidden></span>
+                <span id="onesmissed" class="endscreen" hidden>The songs you missed were:</span>
+                <div id="missedsongs" class="endscreen" hidden></div>
+            </div>
+            <div id="righthalf" class="endscreen" hidden>
+                <span id="charttitle" class="endscreen" hidden>Previous Attempts</span>
+                <div id="chart-wrapper" class="endscreen" hidden>
+                    <canvas id="previousattempts" class="endscreen" hidden></canvas>
+                </div>
+            </div>
+        </div>
+        <button id="share" class="endscreen" onclick="shareButton()" hidden>Share</button>
+        <div id="copymessage" hidden>Copied text to clipboard!</div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+        <script src="./scripts/index.js" defer></script>
+        <script>
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+
+    </body>
+    <footer class="login loggedin beforestart">
+        <a href="mailto:public+feedback@jukeboxhero.app" id="feedback" class="login loggedin beforestart">Feedback?</a>
+        <span class="login loggedin playlists beforestart dash">-</span>
+        <a href="https://paypal.me/jukeboxherogame" id="donate" class="login loggedin beforestart">Donate</a>
+        <span class="login loggedin playlists beforestart dash">-</span>
+        <a href="/faq.html" id="faq" class="login loggedin beforestart">F.A.Q.</a>
+        <span class="login loggedin beforestart" id="spotifyattribution">All data retrieved using <img class="footerlogo" src="/images/Spotify_Logo_RGB_Green.png" /></span>
+    </footer>
+</html>

@@ -1,0 +1,26 @@
+{
+  "name": "spotifymusicquiz",
+  "version": "0.0.1",
+  "description": "The classic iPod game brought back with Spotify",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node ./app.js"
+  },
+  "dependencies": {
+    "bent": "~7.3.12",
+    "cookie-parser": "~1.4.6",
+    "cors": "^2.8.5",
+    "express": "~4.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivanbur/spotify-music-quiz.git"
+  },
+  "author": "ivanbur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ivanbur/spotify-music-quiz/issues"
+  },
+  "homepage": "https://github.com/ivanbur/spotify-music-quiz#readme"
+}
